@@ -8,7 +8,7 @@ import { Storefront } from '@phosphor-icons/react/dist/ssr';
 export const NavBar = () => {
   return (
     <div>
-      <div className="navbar bg-gray-800">
+      <div className="navbar  bg-slate-600">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl sm:flex hidden">
             <Storefront weight='bold' size={25} />
