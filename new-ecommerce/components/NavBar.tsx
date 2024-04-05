@@ -40,7 +40,7 @@ export const NavBar = () => {
           </div>
 
           <div className="sm:hidden">
-            <MobileDrawer />
+            <MobileDrawer categories={categories} />
           </div>
           <div className="mx-auto">
             <SearchBox />
