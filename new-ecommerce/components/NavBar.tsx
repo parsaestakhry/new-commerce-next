@@ -1,4 +1,3 @@
-import React from "react";
 import { ShoppingCart } from "./ShoppingCart";
 import { Avatar } from "./Avatar";
 import { SearchBox } from "./SearchBox";

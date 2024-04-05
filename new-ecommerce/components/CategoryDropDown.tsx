@@ -9,7 +9,7 @@ export const CategoryDropDown = () => {
     <div>
       <details className="dropdown">
         <summary className="m-1 btn btn-ghost" onClick={() => setUp(!up)}>
-            {up ? <CaretUp size={20}/> : <CaretDown size={20}/> }
+            {up ? <CaretUp size={20} weight="bold"/> : <CaretDown size={20} weight="bold"/> }
         </summary>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
           <li>
