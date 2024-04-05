@@ -4,6 +4,7 @@ import { Avatar } from './Avatar';
 import { SearchBox } from './SearchBox';
 import { MobileDrawer } from './MobileDrawer';
 import { Storefront } from '@phosphor-icons/react/dist/ssr';
+import { CategoryDropDown } from './CategoryDropDown';
 
 export const NavBar = () => {
   return (
@@ -13,6 +14,7 @@ export const NavBar = () => {
           <a className="btn btn-ghost text-xl sm:flex hidden">
             <Storefront weight='bold' size={25} />
           </a>
+          <CategoryDropDown/>
           <div className='sm:hidden'>
             <MobileDrawer/>
           </div>
