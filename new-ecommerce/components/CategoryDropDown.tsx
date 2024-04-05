@@ -8,8 +8,8 @@ export const CategoryDropDown = () => {
   return (
     <div>
       <details className="dropdown">
-        <summary className="m-1 btn" onClick={() => setUp(!up)}>
-            {up ? <CaretUp/> : <CaretDown/> }
+        <summary className="m-1 btn btn-ghost" onClick={() => setUp(!up)}>
+            {up ? <CaretUp size={20}/> : <CaretDown size={20}/> }
         </summary>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
           <li>
