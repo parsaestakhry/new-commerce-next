@@ -2,23 +2,13 @@
 
 import { CaretDown, CaretUp } from "@phosphor-icons/react/dist/ssr";
 import { useEffect, useState } from "react";
+import { CategoryItem } from "./NavBar";
 
-export const CategoryDropDown = () => {
+
+export const CategoryDropDown = (props : any) => {
   const [up, setUp] = useState(false);
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await fetch("http://127.0.0.1:8000/get-categories/");
-      const data = await response.json();
-      //console.log(data)
-      setCategories(data);
-    };
-    getData();
-    //console.log(categories)
-  }, []);
-
-  //console.log(categories);
+  const categories = props.categories
+ 
 
   return (
     <div>
@@ -30,13 +20,10 @@ export const CategoryDropDown = () => {
             <CaretDown size={20} weight="bold" />
           )}
         </summary>
-        <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
+        <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-800 rounded-box w-52">
+            {categories.map((item : CategoryItem , index : number) => (
+                <div key={index} className="btn btn-ghost mt-2 text-slate-100">{item.name}</div>
+            ))}
         </ul>
       </details>
     </div>
