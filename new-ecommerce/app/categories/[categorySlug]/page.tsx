@@ -21,13 +21,19 @@ const page = ({ params }: { params: { categorySlug: string } }) => {
     const getData = async () => {
       const response = await fetch(`http://127.0.0.1:8000/get-products/`);
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       //   console.log("hello");
+      const filteredProducts = data.filter(
+        (product: Product) => product.category === params.categorySlug
+      );
+      setProducts(filteredProducts);
     };
     getData();
   }, []);
 
-  return <div>{params.categorySlug}</div>;
+  console.log(products)
+
+  return <div></div>;
 };
 
 export default page;
