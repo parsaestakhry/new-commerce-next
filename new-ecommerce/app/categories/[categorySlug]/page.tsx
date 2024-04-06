@@ -22,7 +22,7 @@ const page = ({ params }: { params: { categorySlug: string } }) => {
       const response = await fetch(`http://127.0.0.1:8000/get-products/`);
       const data = await response.json();
       //console.log(data);
-      //   console.log("hello");
+      //console.log("hello");
       const filteredProducts = data.filter(
         (product: Product) => product.category === params.categorySlug
       );
