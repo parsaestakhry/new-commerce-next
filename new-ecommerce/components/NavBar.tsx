@@ -13,7 +13,7 @@ export interface CategoryItem {
   pic: string;
 }
 
-export const NavBar = () => {
+export const NavBar = (props : any) => {
   const [categories, setCategories] = useState<Object>([]);
 
   useEffect(() => {

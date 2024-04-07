@@ -19,14 +19,12 @@ const page = ({ params }: { params: { categorySlug: string } }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch(`http://127.0.0.1:8000/get-products/`);
+      const response = await fetch(`http://127.0.0.1:8000/get-category-products/?category=${1}`);
       const data = await response.json();
       //console.log(data);
       //console.log("hello");
-      const filteredProducts = data.filter(
-        (product: Product) => product.category === params.categorySlug
-      );
-      setProducts(filteredProducts);
+      
+      setProducts(data);
     };
     getData();
   }, []);
