@@ -1,37 +1,40 @@
-"use client";
-import { CategoryItem } from "@/components/NavBar";
+"use client"
+
 import { useEffect, useState } from "react";
 
-export interface Product {
-  amount: number;
-  category: string;
-  date_created: string;
-  description: string;
-  id: number;
-  name: string;
-  pic: string;
-  price: number;
-  purchase: Array<number>;
-}
-
-const page = ({ params }: { params: { categorySlug: string } }) => {
+const Page = ({ params }: { params: { categorySlug: string } }) => {
   const [products, setProducts] = useState([]);
+  const [categoryId, setCategoryId] = useState<number>();
+
+  useEffect(() => {
+    const getId = async () => {
+      const response = await fetch(
+        `http://127.0.0.1:8000/get-category-id/${params.categorySlug}/`
+      );
+      const data = await response.json();
+      setCategoryId(data);
+    };
+    getId();
+  }, [params.categorySlug]); // Trigger when categorySlug changes
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch(`http://127.0.0.1:8000/get-category-products/?category=${1}`);
-      const data = await response.json();
-      //console.log(data);
-      //console.log("hello");
-      
-      setProducts(data);
+      if (categoryId !== undefined) {
+        // Check if categoryId is defined
+        const response = await fetch(
+          `http://127.0.0.1:8000/get-category-products/?category=${categoryId}`
+        );
+        const data = await response.json();
+        setProducts(data);
+      }
     };
     getData();
-  }, []);
+  }, [categoryId]); // Trigger when categoryId changes
 
-  console.log(products)
+  console.log(categoryId);
+  console.log(products);
 
   return <div></div>;
 };
 
-export default page;
+export default Page;
