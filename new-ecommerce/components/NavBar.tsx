@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { ShoppingCart } from "./ShoppingCart";
 import { Avatar } from "./Avatar";
 import { SearchBox } from "./SearchBox";
@@ -6,7 +6,6 @@ import { MobileDrawer } from "./MobileDrawer";
 import { Storefront } from "@phosphor-icons/react/dist/ssr";
 import { CategoryDropDown } from "./CategoryDropDown";
 import { useState, useEffect } from "react";
-
 export interface CategoryItem {
   id: number;
   name: string;
