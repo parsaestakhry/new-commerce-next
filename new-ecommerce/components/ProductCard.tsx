@@ -19,6 +19,7 @@ export const ProductCard = () => {
             <div className="badge badge-outline">Products</div>
           </div>
         </div>
+        <button className="btn bg-black mb-2 w-24 mx-auto">hello</button>
       </div>
     </div>
   );
