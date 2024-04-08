@@ -1,4 +1,6 @@
-export const ProductCard = () => {
+import { Product } from "@/app/page";
+export const ProductCard = ({ item } : {item : Product}) => {
+    
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl">
