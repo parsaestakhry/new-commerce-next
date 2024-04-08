@@ -15,7 +15,7 @@ export interface Product {
 }
 
 export default function Home() {
-  const [products, setProducts] = useState<Product | null>();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -31,7 +31,9 @@ export default function Home() {
 
   return (
     <>
-      <ProductCard />
+      {products.map((item : Product, index : number) => (
+        <ProductCard item={item} key={index} />
+      ))}
     </>
   );
 }
