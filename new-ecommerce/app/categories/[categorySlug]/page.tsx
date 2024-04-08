@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import { Product } from "@/app/page";
+import { ProductCard } from "@/components/ProductCard";
 const Page = ({ params }: { params: { categorySlug: string } }) => {
   const [products, setProducts] = useState([]);
 
@@ -22,7 +23,21 @@ const Page = ({ params }: { params: { categorySlug: string } }) => {
   // console.log(categoryId);
   //console.log(products);
 
-  return <div></div>;
+  return (
+    <div>
+      <div className="sm:flex space-x-2  justify-center hidden flex-wrap">
+        {products.map((item: Product, index: number) => (
+          <ProductCard item={item} key={index} />
+        ))}
+      </div>
+
+      <div className="sm:hidden flex flex-wrap justify-center">
+        {products.map((item: Product, index: number) => (
+          <ProductCard item={item} key={index} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Page;
