@@ -6,6 +6,7 @@ import { MobileDrawer } from "./MobileDrawer";
 import { Storefront } from "@phosphor-icons/react/dist/ssr";
 import { CategoryDropDown } from "./CategoryDropDown";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 export interface CategoryItem {
   id: number;
   name: string;
@@ -14,7 +15,7 @@ export interface CategoryItem {
 
 export const NavBar = () => {
   const [categories, setCategories] = useState<Object>([]);
-
+  const router = useRouter();
   useEffect(() => {
     const getData = async () => {
       const response = await fetch("http://127.0.0.1:8000/get-categories/");
@@ -31,7 +32,10 @@ export const NavBar = () => {
     <div>
       <div className="navbar  bg-slate-700">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl sm:flex hidden">
+          <a
+            className="btn btn-ghost text-xl sm:flex hidden"
+            onClick={() => router.push("/")}
+          >
             <Storefront weight="bold" size={25} />
           </a>
           <div className="hidden sm:flex">
