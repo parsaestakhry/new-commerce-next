@@ -15,7 +15,7 @@ const Page = ({ params }: { params: { categorySlug: string } }) => {
       setProducts(data);
     };
     getCategoryIdProducts();
-  }, [params.categorySlug]); // Trigger when categorySlug changes
+  }, []); // Trigger when categorySlug changes
 
   // Trigger when categoryId changes
 
