@@ -31,8 +31,8 @@ const Page = ({ params }: { params: { categorySlug: string } }) => {
     getData();
   }, [categoryId]); // Trigger when categoryId changes
 
-  console.log(categoryId);
-  console.log(products);
+  // console.log(categoryId);
+  // console.log(products);
 
   return <div></div>;
 };
