@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import { json } from "stream/consumers";
 export const LoginArtBoard = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
+  const [token, setToken] = useState({});
   const handleUserNameInput = (event: any) => {
     setUserName(event.target.value);
   };
@@ -12,8 +14,25 @@ export const LoginArtBoard = () => {
     setPassWord(event.target.value);
   };
 
-  console.log(userName)
-  console.log(passWord)
+  const handleLogin = async () => {
+    fetch("http://127.0.0.1:8000/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: userName,
+        password: passWord,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => setToken(json));
+  };
+
+  console.log(token)
+
+  //   console.log(userName)
+  //   console.log(passWord)
   return (
     <div className="artboard phone-3 bg-black rounded-sm items-center">
       <div className="flex justify-center font-black text-slate-100 p-10 text-xl">
@@ -57,7 +76,12 @@ export const LoginArtBoard = () => {
           onChange={handlePassWordInput}
         />
       </label>
-      <div className="btn btn-primary mt-10 flex mx-3">login</div>
+      <div
+        className="btn btn-primary mt-10 flex mx-3"
+        onClick={() => handleLogin()}
+      >
+        login
+      </div>
     </div>
   );
 };
