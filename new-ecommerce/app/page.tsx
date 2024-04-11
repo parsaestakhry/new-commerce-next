@@ -29,15 +29,13 @@ export default function Home() {
   }, []);
 
   const { add: handleAdd, cart } = useCartStore();
-  const { fetch: fetchApi } = useCategoryStore();
-  const { categories } = useCategoryStore();
-  const [isSet, setIsSet] = useState(false);
+  const { fetch: fetchApi } : any = useCategoryStore();
+  const { categories } : any = useCategoryStore();
 
   useEffect(() => {
     fetchApi();
-    console.log(categories);
-  }, []);
-
+  }, [])
+  console.log(categories)
   return (
     <>
       <div className="sm:flex space-x-2  justify-center hidden flex-wrap">
@@ -51,10 +49,10 @@ export default function Home() {
           <ProductCard item={item} key={index} />
         ))}
       </div>
-      <button className="btn btn-primary" onClick={() => handleAdd()}>
+      {/* <button className="btn btn-primary" onClick={() => handleAdd()}>
         inc {cart}
-      </button>
-      <button
+      </button> */}
+      {/* <button
         onClick={async () => {
           await fetchApi();
           setIsSet(true);
@@ -62,7 +60,7 @@ export default function Home() {
       >
         {" "}
         Fetch
-      </button>
+      </button> */}
     </>
   );
 }
