@@ -28,7 +28,15 @@ export default function Home() {
     getProducts();
   }, []);
 
-  //console.log(products)
+  const { add: handleAdd, cart } = useCartStore();
+  const { fetch: fetchApi } = useCategoryStore();
+  const { categories } = useCategoryStore();
+  const [isSet, setIsSet] = useState(false);
+
+  useEffect(() => {
+    fetchApi();
+    console.log(categories);
+  }, []);
 
   return (
     <>
@@ -43,7 +51,18 @@ export default function Home() {
           <ProductCard item={item} key={index} />
         ))}
       </div>
-
+      <button className="btn btn-primary" onClick={() => handleAdd()}>
+        inc {cart}
+      </button>
+      <button
+        onClick={async () => {
+          await fetchApi();
+          setIsSet(true);
+        }}
+      >
+        {" "}
+        Fetch
+      </button>
     </>
   );
 }
