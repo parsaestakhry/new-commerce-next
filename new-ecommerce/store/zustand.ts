@@ -8,6 +8,8 @@ type CartStore = {
   removeAll: () => void;
 };
 
+
+
 export const useCartStore = create<CartStore>((set) => ({
   cart: 0,
   add: () => set((state) => ({ cart: state.cart + 1 })),
@@ -22,6 +24,9 @@ export const useCategoryStore = create((set) => ({
     set({ categories: await response.json() });
   },
 }));
+
+
+
 
 if (process.env.NODE_ENV === "development") {
   mountStoreDevtool("Store", useCartStore);
