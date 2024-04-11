@@ -28,7 +28,6 @@ export default function Home() {
     getProducts();
   }, []);
 
-  const { add: handleAdd, cart } = useCartStore();
   const { fetch: fetchApi } : any = useCategoryStore();
   const { categories } : any = useCategoryStore();
 
@@ -36,6 +35,8 @@ export default function Home() {
     fetchApi();
   }, [])
   console.log(categories)
+
+  
   return (
     <>
       <div className="sm:flex space-x-2  justify-center hidden flex-wrap">
