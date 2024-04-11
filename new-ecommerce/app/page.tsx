@@ -3,7 +3,7 @@
 import { ProductCard } from "@/components/ProductCard";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import { useCartStore, useCategoryStore } from "@/store/zustand";
 export interface Product {
   id: number;
   category: string;
@@ -18,7 +18,6 @@ export interface Product {
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
     const getProducts = async () => {
       const response = await fetch(`http://127.0.0.1:8000/get-products/`);
@@ -44,6 +43,7 @@ export default function Home() {
           <ProductCard item={item} key={index} />
         ))}
       </div>
+
     </>
   );
 }
