@@ -11,6 +11,7 @@ export const ProductCard = ({ item } : {item : Product}) => {
             alt="Shoes"
             width={400}
             height={400}
+            className="object-cover h-56 w-80"
           />
         </figure>
         <div className="card-body">
