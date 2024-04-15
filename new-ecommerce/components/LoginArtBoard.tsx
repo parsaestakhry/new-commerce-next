@@ -1,7 +1,9 @@
 "use client";
+import { getCookie } from "@/utils/getCookie";
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { json } from "stream/consumers";
+
 export const LoginArtBoard = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -14,25 +16,48 @@ export const LoginArtBoard = () => {
     setPassWord(event.target.value);
   };
 
-  const handleLogin = async () => {
-    fetch("http://127.0.0.1:8000/login/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: userName,
-        password: passWord,
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => setToken(json));
-  };
+  // const handleLogin = async () => {
+  //   const response = await fetch("http://127.0.0.1:8000/login/", {
+  //     method: "POST",
+  //     credentials: "omit",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       username: userName,
+  //       password: passWord,
+  //     }),
+  //   });
+  //   const data = await response.json();
+  //   console.log(data);
+  // };
 
-  console.log(token)
+  //console.log(() => getCookie());
+
+  //console.log(token);
 
   //   console.log(userName)
   //   console.log(passWord)
+  
+  const handleLogin = async () => {
+    try {
+      // Set axios defaults for credentials
+      axios.defaults.withCredentials = true;
+
+      const response = await axios.post("http://127.0.0.1:8000/login/", {
+        username: userName,
+        password: passWord,
+      });
+      console.log(response)
+
+      // Assuming the backend sends cookies in the response
+      // You can extract and store these cookies if needed
+      console.log("Login successful", response.data);
+    } catch (error) {
+      console.error("Login failed", error);
+    }
+  };
+
   return (
     <div className="artboard phone-3 bg-black rounded-sm items-center">
       <div className="flex justify-center font-black text-slate-100 p-10 text-xl">
