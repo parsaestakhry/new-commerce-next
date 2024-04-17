@@ -1,10 +1,14 @@
 "use client";
 import { getCookie } from "@/utils/getCookie";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useState } from "react";
+import { log } from "util";
+
 
 export const LoginArtBoard = () => {
+  const router = useRouter();
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
   const [token, setToken] = useState({});
@@ -38,7 +42,7 @@ export const LoginArtBoard = () => {
 
   //   console.log(userName)
   //   console.log(passWord)
-  
+
   const handleLogin = async () => {
     try {
       // Set axios defaults for credentials
@@ -48,7 +52,7 @@ export const LoginArtBoard = () => {
         username: userName,
         password: passWord,
       });
-      console.log(response)
+      console.log(response);
 
       // Assuming the backend sends cookies in the response
       // You can extract and store these cookies if needed
@@ -56,6 +60,7 @@ export const LoginArtBoard = () => {
     } catch (error) {
       console.error("Login failed", error);
     }
+    router.push("/user")
   };
 
   return (
@@ -101,10 +106,7 @@ export const LoginArtBoard = () => {
           onChange={handlePassWordInput}
         />
       </label>
-      <div
-        className="btn btn-primary mt-10 flex mx-3"
-        onClick={() => handleLogin()}
-      >
+      <div className="btn btn-primary mt-10 flex mx-3" onClick={() => handleLogin()}>
         login
       </div>
     </div>

@@ -1,9 +1,17 @@
-import React from 'react'
+"use client";
+import axios from "axios";
+import React from "react";
 
 const page = () => {
-  return (
-    <div>user page</div>
-  )
-}
+  const handleRequest = async () => {
+    
+  };
 
-export default page
+  return (
+    <div className="btn btn-primary" onClick={() => handleRequest}>
+      click me
+    </div>
+  );
+};
+
+export default page;
