@@ -26,9 +26,16 @@ export const useCategoryStore = create((set) => ({
 }));
 
 
+export const useTokenStore = create((set) => ({
+  token: null, // Initial token value is null
+  setToken: (newToken : any) => set({ token: newToken }), // Method to set a new token
+}));
+
+
 
 
 if (process.env.NODE_ENV === "development") {
-  mountStoreDevtool("Store", useCartStore);
-  mountStoreDevtool("category", useCategoryStore);
+  // mountStoreDevtool("Store", useCartStore);
+  // mountStoreDevtool("category", useCategoryStore);
+  mountStoreDevtool("Token" , useTokenStore)
 }
