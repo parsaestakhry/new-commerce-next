@@ -1,18 +1,19 @@
 "use client";
-import { getCookie } from "@/utils/getCookie";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useState } from "react";
-import { log } from "util";
 import { Cookies } from "react-cookie";
+import { useTokenStore } from "@/store/zustand";
+
+
 export const LoginArtBoard = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
-  const [token, setToken] = useState({});
+  const [token, setToken] = useState<any>();
   const cookies = new Cookies();
-
+  const {setToken : setAuthToken} : any = useTokenStore(); 
 
   const handleUserNameInput = (event: any) => {
     setUserName(event.target.value);
@@ -59,15 +60,24 @@ export const LoginArtBoard = () => {
       // Assuming the backend sends cookies in the response
       // You can extract and store these cookies if needed
       console.log("Login successful", response.data);
+      const data = response.data.token
+      //console.log(data)
+      setToken(data)
+      //localStorage.setItem('token', data)
     } catch (error) {
       console.error("Login failed", error);
     }
     //await router.push("/user")
-    //setTimeout(() => console.log(cookies.getAll()), 2000);
-    setTimeout(() => setToken(cookies.get('auth_token')), 2000)
+    // setTimeout(() => console.log(cookies.getAll()), 2000);
+    // setTimeout(() => setToken(cookies.get('auth_token')), 2000)
   };
 
-  console.log(token)
+  //console.log(token)
+
+  localStorage.setItem('token', token)
+
+  //console.log(localStorage.getItem("token"));
+
 
   return (
     <div className="artboard phone-3 bg-black rounded-sm items-center">
