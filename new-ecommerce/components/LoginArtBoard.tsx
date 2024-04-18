@@ -67,7 +67,7 @@ export const LoginArtBoard = () => {
     } catch (error) {
       console.error("Login failed", error);
     }
-    //await router.push("/user")
+    router.push("login/user/")
     // setTimeout(() => console.log(cookies.getAll()), 2000);
     // setTimeout(() => setToken(cookies.get('auth_token')), 2000)
   };
