@@ -4,6 +4,8 @@ import { ProductCard } from "@/components/ProductCard";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useCartStore, useCategoryStore } from "@/store/zustand";
+import { useTokenStore } from "@/store/zustand";
+
 export interface Product {
   id: number;
   category: string;
@@ -28,15 +30,15 @@ export default function Home() {
     getProducts();
   }, []);
 
-  const { fetch: fetchApi } : any = useCategoryStore();
-  const { categories } : any = useCategoryStore();
+  const { fetch: fetchApi }: any = useCategoryStore();
+  const { categories }: any = useCategoryStore();
+
+  console.log(localStorage.getItem('token'))
 
   useEffect(() => {
     fetchApi();
-  }, [])
-  console.log(categories)
-
-  
+  }, []);
+  console.log(categories);
   return (
     <>
       <div className="sm:flex space-x-2  justify-center hidden flex-wrap">
