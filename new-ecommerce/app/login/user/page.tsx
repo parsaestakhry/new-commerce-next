@@ -3,7 +3,10 @@ import axios from "axios";
 import React from "react";
 
 const page = () => {
-  //console.log(localStorage.getItem('token'))
+  const token = localStorage.getItem('token')
+  const getUser = async() => {
+    
+  }
   return <div className="btn btn-primary">click me</div>;
 };
 
