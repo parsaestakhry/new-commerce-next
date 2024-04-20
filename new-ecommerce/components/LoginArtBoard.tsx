@@ -1,11 +1,9 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Cookies } from "react-cookie";
 import { useTokenStore } from "@/store/zustand";
-
 
 export const LoginArtBoard = () => {
   const router = useRouter();
@@ -13,7 +11,15 @@ export const LoginArtBoard = () => {
   const [passWord, setPassWord] = useState("");
   const [token, setToken] = useState<any>();
   const cookies = new Cookies();
-  const {setToken : setAuthToken} : any = useTokenStore(); 
+  const { setToken: setAuthToken }: any = useTokenStore();
+
+  useEffect(() => {
+    // Retrieve token from localStorage when component mounts
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   const handleUserNameInput = (event: any) => {
     setUserName(event.target.value);
@@ -22,29 +28,6 @@ export const LoginArtBoard = () => {
   const handlePassWordInput = (event: any) => {
     setPassWord(event.target.value);
   };
-
-  // const handleLogin = async () => {
-  //   const response = await fetch("http://127.0.0.1:8000/login/", {
-  //     method: "POST",
-  //     credentials: "omit",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       username: userName,
-  //       password: passWord,
-  //     }),
-  //   });
-  //   const data = await response.json();
-  //   console.log(data);
-  // };
-
-  //console.log(() => getCookie());
-
-  //console.log(token);
-
-  //   console.log(userName)
-  //   console.log(passWord)
 
   const handleLogin = async () => {
     try {
@@ -60,24 +43,17 @@ export const LoginArtBoard = () => {
       // Assuming the backend sends cookies in the response
       // You can extract and store these cookies if needed
       console.log("Login successful", response.data);
-      const data = response.data.token
-      //console.log(data)
-      setToken(data)
-      //localStorage.setItem('token', data)
+      const data = response.data.token;
+
+      setToken(data);
+
+      // Save token to localStorage
+      localStorage.setItem("token", data);
     } catch (error) {
       console.error("Login failed", error);
     }
-    router.push("login/user/")
-    // setTimeout(() => console.log(cookies.getAll()), 2000);
-    // setTimeout(() => setToken(cookies.get('auth_token')), 2000)
+    //router.push("login/user/");
   };
-
-  //console.log(token)
-
-  localStorage.setItem('token', token)
-
-  //console.log(localStorage.getItem("token"));
-
 
   return (
     <div className="artboard phone-3 bg-black rounded-sm items-center">
@@ -122,7 +98,10 @@ export const LoginArtBoard = () => {
           onChange={handlePassWordInput}
         />
       </label>
-      <div className="btn btn-primary mt-10 flex mx-3" onClick={() => handleLogin()}>
+      <div
+        className="btn btn-primary mt-10 flex mx-3"
+        onClick={() => handleLogin()}
+      >
         login
       </div>
     </div>

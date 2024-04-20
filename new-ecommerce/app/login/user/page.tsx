@@ -4,9 +4,7 @@ import React from "react";
 
 const page = () => {
   const token = localStorage.getItem('token')
-  const getUser = async() => {
-    
-  }
+  console.log(token)
   return <div className="btn btn-primary">click me</div>;
 };
 
