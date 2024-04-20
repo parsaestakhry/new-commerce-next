@@ -2,16 +2,14 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { Cookies } from "react-cookie";
-import { useTokenStore } from "@/store/zustand";
+
 
 export const LoginArtBoard = () => {
   const router = useRouter();
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
   const [token, setToken] = useState<any>();
-  const cookies = new Cookies();
-  const { setToken: setAuthToken }: any = useTokenStore();
+  
 
   useEffect(() => {
     // Retrieve token from localStorage when component mounts
@@ -38,21 +36,28 @@ export const LoginArtBoard = () => {
         username: userName,
         password: passWord,
       });
-      console.log(response);
+      //console.log(response);
 
       // Assuming the backend sends cookies in the response
       // You can extract and store these cookies if needed
       console.log("Login successful", response.data);
       const data = response.data.token;
+      const login = response.data.message
 
-      setToken(data);
+      if (login === "Login successful") {
+        router.push('/login/user/')
+      }
+
+      
 
       // Save token to localStorage
       localStorage.setItem("token", data);
     } catch (error) {
       console.error("Login failed", error);
     }
-    //router.push("login/user/");
+
+    
+    
   };
 
   return (
