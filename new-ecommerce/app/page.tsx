@@ -56,18 +56,6 @@ export default function Home() {
           </div>
         ))}
       </div>
-      {/* <button className="btn btn-primary" onClick={() => handleAdd()}>
-        inc {cart}
-      </button> */}
-      {/* <button
-        onClick={async () => {
-          await fetchApi();
-          setIsSet(true);
-        }}
-      >
-        {" "}
-        Fetch
-      </button> */}
     </>
   );
 }
