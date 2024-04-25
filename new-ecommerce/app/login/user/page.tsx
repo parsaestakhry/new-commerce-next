@@ -28,7 +28,7 @@ const page = () => {
   //console.log(products);
   return (
     <>
-    <div className="flex justify-center ">
+    <div className="flex justify-center flex-wrap ">
       {products.map((product : Product, index : number ) => (
         <ProductCard item={product} key={index}/>
       ))}
