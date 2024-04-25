@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Product } from "@/app/page";
 import { ProductCard } from "@/components/ProductCard";
+import { UserProductCard } from "@/components/UserProductCard";
 const page = () => {
   const [products, setProducts] = useState([]);
 
@@ -31,7 +32,7 @@ const page = () => {
       <div className="flex justify-center flex-wrap">
         {products.map((product: Product, index: number) => (
           <div className="mt-4 mb-4">
-            <ProductCard item={product} key={index} />
+            <UserProductCard item={product} key={index} />
           </div>
         ))}
       </div>
