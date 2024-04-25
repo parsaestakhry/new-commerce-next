@@ -22,7 +22,7 @@ export const ProductCard = ({ item } : {item : Product}) => {
             </h2>
             <p>{item.description}</p>
           </div>
-          <button className="btn btn-ghost mb-2 w-24 mx-auto">Buy now</button>
+          <button className="btn btn-ghost mb-2 w-24 mx-auto">Add to Cart</button>
         </div>
       </div>
 
