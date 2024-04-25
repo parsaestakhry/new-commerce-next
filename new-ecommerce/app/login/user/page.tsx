@@ -1,9 +1,10 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { Product } from "@/app/page";
+import { ProductCard } from "@/components/ProductCard";
 const page = () => {
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState([]);
 
   const local_token = localStorage.getItem("token");
   // console.log(local_token)
@@ -24,11 +25,15 @@ const page = () => {
     getUserProducts();
   }, []);
 
-  console.log(products);
+  //console.log(products);
   return (
-    <div className="btn btn-primary" >
-      click me
+    <>
+    <div className="flex justify-center ">
+      {products.map((product : Product, index : number ) => (
+        <ProductCard item={product} key={index}/>
+      ))}
     </div>
+    </>
   );
 };
 

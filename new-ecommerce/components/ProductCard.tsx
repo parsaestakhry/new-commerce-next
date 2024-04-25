@@ -4,7 +4,7 @@ export const ProductCard = ({ item } : {item : Product}) => {
     const local = "http://127.0.0.1:8000/";
   return (
     <div>
-      <div className="card w-80 bg-black shadow-xl mt-5">
+      <div className="card w-80 bg-slate-500 shadow-xl mx-2">
         <figure>
           <Image
             src={local + item.pic}
