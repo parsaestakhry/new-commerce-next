@@ -43,13 +43,17 @@ export default function Home() {
     <>
       <div className="sm:flex space-x-2  justify-center hidden flex-wrap">
         {products.map((item: Product, index: number) => (
-          <ProductCard item={item} key={index} />
+          <div className="mt-4 mb-4">
+            <ProductCard item={item} key={index} />
+          </div>
         ))}
       </div>
 
       <div className="sm:hidden flex flex-wrap justify-center">
         {products.map((item: Product, index: number) => (
-          <ProductCard item={item} key={index} />
+          <div className="mt-2 mb-2">
+            <ProductCard item={item} key={index} />
+          </div>
         ))}
       </div>
       {/* <button className="btn btn-primary" onClick={() => handleAdd()}>
