@@ -52,7 +52,7 @@ export const UserProductCard = ({ item }: { item: Purchase }) => {
           </figure>
           <div className="card-body">
             <h2 className="card-title">
-              {product.name}
+              {product.name} amount : {item.product_amount}
               <div className="badge badge-secondary">{product.category}</div>
             </h2>
             <p>{product.description}</p>
