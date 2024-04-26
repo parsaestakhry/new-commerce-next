@@ -1,7 +1,22 @@
 import { Product } from "@/app/page";
 import Image from "next/image";
+import axios from "axios";
+import { useState } from "react";
 export const ProductCard = ({ item } : {item : Product}) => {
+  const [text, setText] = useState<string>("add to cart");
+  
     const local = "http://127.0.0.1:8000/";
+    const handleAddCart = async () => {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/add-to-list/${item.id}/`, {
+          token : localStorage.getItem('token')
+        }
+      );
+
+      setText("added to cart")
+
+      //console.log(response)
+    };
   return (
     <div>
       <div className="hidden sm:flex">
@@ -22,7 +37,7 @@ export const ProductCard = ({ item } : {item : Product}) => {
             </h2>
             <p>{item.description}</p>
           </div>
-          <button className="btn btn-ghost mb-2 w-24 mx-auto">Add to Cart</button>
+          <button className="btn btn-ghost mb-2 w-24 mx-auto" onClick={() => handleAddCart()}>{text}</button>
         </div>
       </div>
 
