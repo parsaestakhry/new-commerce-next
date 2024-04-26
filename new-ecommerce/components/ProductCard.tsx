@@ -2,21 +2,32 @@ import { Product } from "@/app/page";
 import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
-export const ProductCard = ({ item } : {item : Product}) => {
+import { ShoppingCart } from "@phosphor-icons/react/dist/ssr";
+export const ProductCard = ({ item }: { item: Product }) => {
   const [text, setText] = useState<string>("add to cart");
-  
-    const local = "http://127.0.0.1:8000/";
-    const handleAddCart = async () => {
+  const [amount, setAmount] = useState<number>(0);
+  const local = "http://127.0.0.1:8000/";
+  const handleAddCart = async () => {
+    if (amount > 0) {
       const response = await axios.post(
-        `http://127.0.0.1:8000/add-to-list/${item.id}/`, {
-          token : localStorage.getItem('token')
+        `http://127.0.0.1:8000/add-multiple-list/${item.id}/${amount}/`,
+        {
+          token: localStorage.getItem("token"),
         }
       );
+      console.log(response);
 
-      setText("added to cart")
+      setText("added to cart");
+    } else {
+      setText("please enter amount");
+    }
+  };
 
-      //console.log(response)
-    };
+  const handleAmount = (event: any) => {
+    setAmount(event.target.value);
+  };
+
+  //console.log(amount)
   return (
     <div>
       <div className="hidden sm:flex">
@@ -37,7 +48,20 @@ export const ProductCard = ({ item } : {item : Product}) => {
             </h2>
             <p>{item.description}</p>
           </div>
-          <button className="btn btn-ghost mb-2 w-24 mx-auto" onClick={() => handleAddCart()}>{text}</button>
+          <div className="flex justify-center">
+            <button
+              className="btn btn-ghost mb-2 w-24 mx-auto"
+              onClick={() => handleAddCart()}
+            >
+              {text}
+            </button>
+            <input
+              type="text"
+              placeholder="count"
+              className="input input-bordered w-20 input-ghost mr-10 text-start text-sm"
+              onChange={() => handleAmount(event)}
+            />
+          </div>
         </div>
       </div>
 
@@ -60,9 +84,57 @@ export const ProductCard = ({ item } : {item : Product}) => {
             </h2>
             <p>{item.description}</p>
           </div>
-          <button className="btn btn-ghost mb-2 w-24 mx-auto">Buy now</button>
+          <button
+            className="btn btn-ghost mb-2 w-24 mx-auto"
+            onClick={() => handleAddCart()}
+          >
+            Add to cart
+            <ShoppingCart />
+          </button>
+          {/* <div className="mx-10">
+            <input
+              type="range"
+              min={0}
+              max="100"
+              // value="25"
+              className="range"
+              step="10"
+            />
+            <div className="w-full flex justify-between text-xs mb-2 p-2">
+              <span className="text-lg" onClick={() => setAmount(1)}>
+                1
+              </span>
+              <span className="text-lg" onClick={() => setAmount(2)}>
+                2
+              </span>
+              <span className="text-lg" onClick={() => setAmount(3)}>
+                3
+              </span>
+              <span className="text-lg" onClick={() => setAmount(4)}>
+                4
+              </span>
+              <span className="text-lg" onClick={() => setAmount(5)}>
+                5
+              </span>
+              <span className="text-lg" onClick={() => setAmount(6)}>
+                6
+              </span>
+              <span className="text-lg" onClick={() => setAmount(7)}>
+                7
+              </span>
+              <span className="text-lg" onClick={() => setAmount(8)}>
+                8
+              </span>
+              <span className="text-lg" onClick={() => setAmount(9)}>
+                9
+              </span>
+              <span className="text-lg" onClick={() => setAmount(10)}>
+                10
+              </span>
+            </div>
+          </div> */}
         </div>
       </div>
     </div>
   );
-}
+};
