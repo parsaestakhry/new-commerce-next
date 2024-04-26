@@ -1,8 +1,25 @@
 import { Product } from "@/app/page";
+import axios from "axios";
 import Image from "next/image";
+import { it } from "node:test";
 
 export const UserProductCard = ({ item }: { item: Product }) => {
   const local = "http://127.0.0.1:8000/";
+  const handleRemoveCart = async () => {
+    const response = await axios.delete(
+      `http://127.0.0.1:8000/remove-from-list/${item.id}/`,
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+        data: {
+          token: localStorage.getItem("token"),
+        },
+      }
+    );
+
+    window.location.reload();
+  };
   return (
     <div>
       <div className="hidden sm:flex">
@@ -23,9 +40,17 @@ export const UserProductCard = ({ item }: { item: Product }) => {
             </h2>
             <p>{item.description}</p>
           </div>
-          <button className="btn btn-ghost mb-2 w-24 mx-auto">
-            Check Out
-          </button>
+          <div className="flex">
+            <button className="btn btn-ghost mb-2 w-24 mx-auto">
+              Check Out
+            </button>
+            <button
+              onClick={() => handleRemoveCart()}
+              className="btn bg-red-500 border-none text-slate-100 mb-2 w-24 mx-auto"
+            >
+              remove
+            </button>
+          </div>
         </div>
       </div>
 
@@ -48,6 +73,7 @@ export const UserProductCard = ({ item }: { item: Product }) => {
             </h2>
             <p>{item.description}</p>
           </div>
+          <button className="btn btn-ghost mb-2 w-24 mx-auto">Check out</button>
           <button className="btn btn-ghost mb-2 w-24 mx-auto">Check out</button>
         </div>
       </div>
