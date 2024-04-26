@@ -4,9 +4,15 @@ import React, { useEffect, useState } from "react";
 import { Product } from "@/app/page";
 import { ProductCard } from "@/components/ProductCard";
 import { UserProductCard } from "@/components/UserProductCard";
+export interface Purchase {
+  id: number;
+  product_amount: number;
+  purchase_id: number;
+  product_id: number;
+}
 const page = () => {
   const [products, setProducts] = useState([]);
-
+  const [purchases, setPurchases] = useState([]);
   const local_token = localStorage.getItem("token");
   // console.log(local_token)
 
@@ -19,20 +25,27 @@ const page = () => {
         }
       );
 
-      const data = response.data;
+      const data = await response.data;
       //console.log(data)
-      setProducts(data);
+      setPurchases(data);
     };
     getUserProducts();
   }, []);
 
-  //console.log(products);
   return (
     <>
-      <div className="flex justify-center flex-wrap">
+      {/* <div className="flex justify-center flex-wrap">
         {products.map((product: Product, index: number) => (
           <div className="mt-4 mb-4">
             <UserProductCard item={product} key={index} />
+          </div>
+        ))}
+      </div> */}
+
+      <div className="flex justify-center flex-wrap">
+        {purchases.map((item: Purchase, index: number) => (
+          <div className="mt-4 mb-4">
+            <UserProductCard item={item} key={index} />
           </div>
         ))}
       </div>
