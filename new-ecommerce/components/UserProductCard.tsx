@@ -36,6 +36,7 @@ export const UserProductCard = ({ item }: { item: Purchase }) => {
   }, []);
 
   if (!product) return null; // Handling null case to avoid rendering errors
+  
 
   return (
     <div>
