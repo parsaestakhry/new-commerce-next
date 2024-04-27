@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Product } from "@/app/page";
 import { ProductCard } from "@/components/ProductCard";
 import { UserProductCard } from "@/components/UserProductCard";
+import { useAmountStore } from "@/store/zustand";
 export interface Purchase {
   id: number;
   product_amount: number;
@@ -14,6 +15,9 @@ const page = () => {
   const [products, setProducts] = useState([]);
   const [purchases, setPurchases] = useState([]);
   const local_token = localStorage.getItem("token");
+  const count = useAmountStore((state) => state.count);
+  const setCount = useAmountStore((state) => state.setCount);
+  // setCount(2);
   // console.log(local_token)
 
   useEffect(() => {
@@ -31,6 +35,20 @@ const page = () => {
     };
     getUserProducts();
   }, []);
+  
+  useEffect(() => {
+    const sumProductAmounts = () => {
+      let totalAmount = 0;
+      for (const purchase of purchases) {
+        totalAmount += purchase.product_amount;
+      }
+      setCount(totalAmount);
+    };
+
+    sumProductAmounts();
+  }, [purchases]);
+
+  //console.log(count)
 
   return (
     <>
