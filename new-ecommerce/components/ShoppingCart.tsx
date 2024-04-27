@@ -1,8 +1,13 @@
-import { useAmountStore } from '@/store/zustand';
-import React from 'react'
+"use client";
+
+import { useAmountStore } from "@/store/zustand";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 export const ShoppingCart = () => {
-  const count = useAmountStore((state) => state.count)
+  const count = useAmountStore((state) => state.count);
+  const total = useAmountStore((state) => state.total);
+  const router = useRouter();
   return (
     <div>
       <div className="dropdown dropdown-end">
@@ -31,13 +36,13 @@ export const ShoppingCart = () => {
         >
           <div className="card-body">
             <span className="font-bold text-lg">{count} Items</span>
-            <span className="text-info">Subtotal: $999</span>
+            <span className="text-info">Subtotal: ${total}</span>
             <div className="card-actions">
-              <button className="btn btn-primary btn-block">View cart</button>
+              <button className="btn btn-primary btn-block" onClick={() => router.push("/login/user/")}>View cart</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
