@@ -10,10 +10,12 @@ type CartStore = {
 
 type Store = {
   count: number;
-  total : number;
+  total: number;
+  added: boolean;
   inc: () => void;
-  setCount : (newValue : number) => void
-  setTotal : (newTotal : number) => void
+  setCount: (newValue: number) => void;
+  setTotal: (newTotal: number) => void;
+  setAdded: (newAdded: boolean) => void;
 };
 
 export const useCartStore = create<CartStore>((set) => ({
@@ -38,10 +40,12 @@ export const useTokenStore = create((set) => ({
 
 export const useAmountStore = create<Store>()((set) => ({
   count: 0,
-  total : 0,
+  total: 0,
+  added: false,
   inc: () => set((state) => ({ count: state.count + 1 })),
-  setCount: (newValue) => set({count : newValue}),
-  setTotal : (newTotal) => set({total : newTotal})
+  setCount: (newValue) => set({ count: newValue }),
+  setTotal: (newTotal) => set({ total: newTotal }),
+  setAdded : (newAdded) => set({added : newAdded})
 }));
 
 if (process.env.NODE_ENV === "development") {
