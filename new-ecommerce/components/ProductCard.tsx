@@ -21,6 +21,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
     } else {
       setText("please enter amount");
     }
+    
   };
 
   const handleAmount = (event: any) => {
