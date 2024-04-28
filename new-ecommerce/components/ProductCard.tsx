@@ -3,9 +3,12 @@ import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
 import { ShoppingCart } from "@phosphor-icons/react/dist/ssr";
+import { useAmountStore } from "@/store/zustand";
+import { SuccessAlert } from "./SuccessAlert";
 export const ProductCard = ({ item }: { item: Product }) => {
   const [text, setText] = useState<string>("add to cart");
   const [amount, setAmount] = useState<number>(0);
+  const setAdded = useAmountStore((state) => state.setAdded)
   const local = "http://127.0.0.1:8000/";
   const handleAddCart = async () => {
     if (amount > 0) {
@@ -21,6 +24,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
     } else {
       setText("please enter amount");
     }
+    setAdded(true)
     
   };
 
