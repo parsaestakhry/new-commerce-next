@@ -1,13 +1,39 @@
 "use client";
 
 import { useAmountStore } from "@/store/zustand";
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ProductCard } from "./ProductCard";
 
 export const ShoppingCart = () => {
   const count = useAmountStore((state) => state.count);
   const total = useAmountStore((state) => state.total);
   const router = useRouter();
+  const [cartCount, setCartCount] = useState<any>();
+  const [purchaseAmount, setPurchaseAmount] = useState<any>();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const getCart = async () => {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/calculate-cart/`,
+        {
+          
+          token: token,
+          
+        }
+      );
+      const data = response.data
+      //console.log(data)
+      setCartCount(data.product_count)
+      setPurchaseAmount(data.purchase_amount)
+    };
+    getCart();
+  }, []);
+
+  //console.log(cartCount)
+  // console.log(purchaseAmount)
   return (
     <div>
       <div className="dropdown dropdown-end">
@@ -27,7 +53,7 @@ export const ShoppingCart = () => {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <span className="badge badge-sm indicator-item">{count}</span>
+            <span className="badge badge-sm indicator-item">{cartCount}</span>
           </div>
         </div>
         <div
@@ -35,10 +61,15 @@ export const ShoppingCart = () => {
           className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
         >
           <div className="card-body">
-            <span className="font-bold text-lg">{count} Items</span>
-            <span className="text-info">Subtotal: ${total}</span>
+            <span className="font-bold text-lg">{cartCount} Items</span>
+            <span className="text-info">Subtotal: ${purchaseAmount}</span>
             <div className="card-actions">
-              <button className="btn btn-primary btn-block" onClick={() => router.push("/login/user/")}>View cart</button>
+              <button
+                className="btn btn-primary btn-block"
+                onClick={() => router.push("/login/user/")}
+              >
+                View cart
+              </button>
             </div>
           </div>
         </div>
