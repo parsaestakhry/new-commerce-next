@@ -5,11 +5,13 @@ import { useState } from "react";
 import { ShoppingCart } from "@phosphor-icons/react/dist/ssr";
 import { useAmountStore } from "@/store/zustand";
 import { SuccessAlert } from "./SuccessAlert";
+import { useRouter } from "next/navigation";
 export const ProductCard = ({ item }: { item: Product }) => {
   const [text, setText] = useState<string>("add to cart");
   const [amount, setAmount] = useState<number>(0);
-  const setAdded = useAmountStore((state) => state.setAdded)
+  const setAdded = useAmountStore((state) => state.setAdded);
   const local = "http://127.0.0.1:8000/";
+  const router = useRouter();
   const handleAddCart = async () => {
     if (amount > 0) {
       const response = await axios.post(
@@ -24,8 +26,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
     } else {
       setText("please enter amount");
     }
-    setAdded(true)
-    
+    setAdded(true);
   };
 
   const handleAmount = (event: any) => {
@@ -63,10 +64,10 @@ export const ProductCard = ({ item }: { item: Product }) => {
             <input
               type="text"
               placeholder="count"
-              className="input input-bordered w-20 input-ghost mr-10 text-start text-sm"
+              className="input input-bordered w-20 input-ghost mr-10 text-start text-sm text-slate-100"
               onChange={() => handleAmount(event)}
             />
-            <button className="btn btn-primary mr-3">
+            <button onClick={() => router.push(`/products/${item.name}/`)} className="btn btn-primary mr-3">
               look
             </button>
           </div>
