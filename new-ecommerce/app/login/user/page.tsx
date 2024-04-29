@@ -13,15 +13,9 @@ export interface Purchase {
   purchase_amount: number;
 }
 const page = () => {
-  const [products, setProducts] = useState([]);
   const [purchases, setPurchases] = useState([]);
+
   const local_token = localStorage.getItem("token");
-  const count = useAmountStore((state) => state.count);
-  const setCount = useAmountStore((state) => state.setCount);
-  const setTotal = useAmountStore((state) => state.setTotal);
-  const total = useAmountStore((state) => state.total);
-  // setCount(2);
-  // console.log(local_token)
 
   useEffect(() => {
     const getUserProducts = async () => {
@@ -38,30 +32,6 @@ const page = () => {
     };
     getUserProducts();
   }, []);
-
-  useEffect(() => {
-    const sumProductAmounts = () => {
-      let totalAmount = 0;
-      for (const purchase of purchases) {
-        totalAmount += purchase.product_amount;
-      }
-      setCount(totalAmount);
-    };
-
-    sumProductAmounts();
-  }, [purchases]);
-
-  useEffect(() => {
-    const sumPurchaseAmounts = () => {
-      let totalPurchaseAmount = 0;
-      for (const purchase of purchases) {
-        totalPurchaseAmount += parseFloat(purchase.purchase_amount);
-      }
-      setTotal(totalPurchaseAmount);
-    };
-
-    sumPurchaseAmounts();
-  }, [purchases, setTotal]);
 
   //console.log(total)
 
