@@ -26,6 +26,7 @@ export interface Product {
 export default function Home() {
   const [products, setProducts] = useState([]);
   const added = useAmountStore((state) => state.added);
+  const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
 
   useEffect(() => {
     const getProducts = async () => {
@@ -36,8 +37,23 @@ export default function Home() {
     getProducts();
   }, []);
 
+  // useEffect(() => {
+  //   if (added) {
+  //     setShowAlert(true); // Show the alert if added is true
+
+  //     // Set timeout to hide the alert after 3 seconds
+  //     const timer = setTimeout(() => {
+  //       setShowAlert(false);
+  //     }, 3000);
+
+  //     // Clear the timeout when component unmounts or when added changes
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [added]);
+
   return (
     <>
+      {/* {showAlert && <SuccessAlert />} Conditionally render SuccessAlert */}
       <div className="sm:flex space-x-2 justify-center hidden flex-wrap">
         {products.map((item: Product, index: number) => (
           <div className="mt-4 mb-4" key={index}>
@@ -55,3 +71,4 @@ export default function Home() {
     </>
   );
 }
+
