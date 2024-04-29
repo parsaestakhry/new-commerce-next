@@ -1,4 +1,5 @@
 "use client";
+import { useInfoStore } from "@/store/zustand";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -9,8 +10,8 @@ export const LoginArtBoard = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
   const [token, setToken] = useState<any>();
+  const setUser = useInfoStore((state) => state.setUsername)
   
-
   useEffect(() => {
     // Retrieve token from localStorage when component mounts
     const storedToken = localStorage.getItem("token");
@@ -36,7 +37,7 @@ export const LoginArtBoard = () => {
         username: userName,
         password: passWord,
       });
-      //console.log(response);
+      console.log(response);
 
       // Assuming the backend sends cookies in the response
       // You can extract and store these cookies if needed
@@ -52,10 +53,12 @@ export const LoginArtBoard = () => {
 
       // Save token to localStorage
       localStorage.setItem("token", data);
+      localStorage.setItem('username', userName)
     } catch (error) {
       console.error("Login failed", error);
     }
 
+    
     
     
   };
