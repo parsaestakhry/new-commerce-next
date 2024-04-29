@@ -55,7 +55,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
           </div>
           <div className="flex justify-center">
             <button
-              className="btn btn-ghost mb-2 w-24 mx-auto"
+              className="btn  bg-green-600 border-none text-slate-100 mb-2 w-24 mx-auto"
               onClick={() => handleAddCart()}
             >
               {text}
@@ -66,6 +66,9 @@ export const ProductCard = ({ item }: { item: Product }) => {
               className="input input-bordered w-20 input-ghost mr-10 text-start text-sm"
               onChange={() => handleAmount(event)}
             />
+            <button className="btn btn-primary mr-3">
+              look
+            </button>
           </div>
         </div>
       </div>
@@ -90,7 +93,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
             <p>{item.description}</p>
           </div>
           <button
-            className="btn btn-ghost mb-2 w-24 mx-auto"
+            className="btn bg-green-600 mb-2 w-24 mx-auto"
             onClick={() => handleAddCart()}
           >
             Add to cart
