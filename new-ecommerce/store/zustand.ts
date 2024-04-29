@@ -18,6 +18,11 @@ type Store = {
   setAdded: (newAdded: boolean) => void;
 };
 
+type User = {
+  username : string
+  setUsername : (newUsername : string) => void
+}
+
 export const useCartStore = create<CartStore>((set) => ({
   cart: 0,
   add: () => set((state) => ({ cart: state.cart + 1 })),
@@ -47,6 +52,12 @@ export const useAmountStore = create<Store>()((set) => ({
   setTotal: (newTotal) => set({ total: newTotal }),
   setAdded : (newAdded) => set({added : newAdded})
 }));
+
+
+export const useInfoStore = create<User>((set) => ({
+  username : "",
+  setUsername : (newUsername) => set({username : newUsername})
+}))
 
 if (process.env.NODE_ENV === "development") {
   // mountStoreDevtool("Store", useCartStore);
