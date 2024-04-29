@@ -67,7 +67,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
               className="input input-bordered w-20 input-ghost mr-10 text-start text-sm text-slate-100"
               onChange={() => handleAmount(event)}
             />
-            <button onClick={() => router.push(`/products/${item.name}/`)} className="btn btn-primary mr-3">
+            <button onClick={() => router.push(`/products/${item.id}/`)} className="btn btn-primary mr-3">
               look
             </button>
           </div>
