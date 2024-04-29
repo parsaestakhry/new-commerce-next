@@ -5,7 +5,7 @@ export const MobileDrawer = (props : any) => {
     const categories = props.categories
   return (
     <div>
-      <div className="drawer">
+      <div className="drawer z-40">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
