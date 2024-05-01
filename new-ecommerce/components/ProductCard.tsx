@@ -23,6 +23,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
       console.log(response);
 
       setText("added to cart");
+      setTimeout(() => window.location.reload(), 200)
     } else {
       setText("please enter amount");
     }
