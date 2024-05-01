@@ -1,22 +1,31 @@
 "use client";
 
 import { Product } from "@/app/page";
+import { ProductBoard } from "@/components/ProductBoard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const page = ({ params }: { params: { productId: number } }) => {
   const product_id = params.productId;
-  const [product, setProduct] = useState<Product | null>(null)
+  const [item, setItem] = useState([]);
   useEffect(() => {
-    const getProduct = async() => {
-      const response = await axios.get(`http://127.0.0.1:8000/get-product/${product_id}/`);
-      setProduct(await response.data)
-    }
+    const getProduct = async () => {
+      setTimeout(() => {
+        axios.get(`http://127.0.0.1:8000/get-product/${product_id}/`).then((response) => {
+          setItem(response.data)
+        })
+      }, 2000);
+    };
     getProduct();
-  }, [])
+  }, [item]);
   
+  //console.log(product)
 
-  return <div></div>;
+  return (
+    <div>
+      <ProductBoard item={item} />
+    </div>
+  );
 };
 
 export default page;
