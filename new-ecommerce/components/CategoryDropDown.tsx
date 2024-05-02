@@ -20,11 +20,11 @@ export const CategoryDropDown = (props: any) => {
             <CaretDown size={22} weight="bold" color="#d6d6d6" />
           )}
         </summary>
-        <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-800 rounded-box w-52">
+        <ul className="p-2 shadow menu dropdown-content z-[1] bg-black rounded-box w-52">
           {categories.map((item: CategoryItem, index: number) => (
             <div
               key={index}
-              className="btn btn-ghost mt-2 text-slate-100"
+              className="btn btn-ghost mt-2 text-slate-100 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 "
               onClick={() => router.push(`/categories/${item.name}`)}
             >
               {item.name}
