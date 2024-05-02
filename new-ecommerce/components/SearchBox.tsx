@@ -10,7 +10,7 @@ export const SearchBox = () => {
       </div>
       {/* for small displays */}
       <div className="sm:hidden">
-        <label className="input input-bordered flex items-center gap-2 w-36  h-10 mt-1 bg-black bg-resolution-blue-50">
+        <label className="input input-bordered flex items-center gap-2 w-24  h-10 mt-1 bg-black ">
           <input type="text" className="grow text-sm" placeholder="Search" />
         </label>
       </div>
