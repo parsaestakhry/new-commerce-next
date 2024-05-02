@@ -41,7 +41,7 @@ export const UserProductCard = ({ item }: { item: Purchase }) => {
   return (
     <div>
       <div className="hidden sm:flex">
-        <div className="card w-80 bg-slate-700 shadow-xl mx-2">
+        <div className="card w-80 bg-gradient-to-r from-slate-500 to-gray-700 shadow-xl mx-2">
           <figure>
             <Image
               src={local + product.pic}
@@ -52,11 +52,13 @@ export const UserProductCard = ({ item }: { item: Purchase }) => {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">
+            <h2 className="card-title text-slate-200 font-sans  text-xl">
               {product.name} amount : {item.product_amount}
-              <div className="badge badge-secondary">{product.category}</div>
+              <div className="badge badge-secondary bg-slate-300 border-none font-sans h-7">
+                {product.category}
+              </div>
             </h2>
-            <p>{product.description}</p>
+            <p className="text-slate-100 text-xl">{product.description}</p>
           </div>
           <div className="flex">
             <button className="btn btn-ghost mb-2 w-24 mx-auto">
