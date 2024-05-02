@@ -1,6 +1,5 @@
 import { Product } from "@/app/page";
 import { useRouter } from "next/navigation";
-import { it } from "node:test";
 import axios from "axios";
 export const ProductBoard = (item: any) => {
   const local = "http://127.0.0.1:8000/";
@@ -28,7 +27,7 @@ export const ProductBoard = (item: any) => {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title  text-4xl">{item.item.name}</h2>
+          <h2 className="card-title  text-4xl ">{item.item.name}</h2>
           <p className="text-3xl">{item.item.description}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-primary" onClick={() => handleAddCart()}>add to cart</button>
