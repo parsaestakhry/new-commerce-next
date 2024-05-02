@@ -16,18 +16,20 @@ export const ShoppingCart = () => {
 
   useEffect(() => {
     const getCart = async () => {
-      const response = await axios.post(
-        `http://127.0.0.1:8000/calculate-cart/`,
-        {
-          
-          token: token,
-          
-        }
-      );
-      const data = response.data
-      //console.log(data)
-      setCartCount(data.product_count)
-      setPurchaseAmount(data.purchase_amount)
+      if (token) {
+        const response = await axios.post(
+          `http://127.0.0.1:8000/calculate-cart/`,
+          {
+            token: token,
+          }
+        );
+        const data = response.data;
+        //console.log(data)
+        setCartCount(data.product_count);
+        setPurchaseAmount(data.purchase_amount);
+      }
+      
+      
     };
     getCart();
   }, []);
