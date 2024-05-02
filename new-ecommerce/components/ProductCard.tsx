@@ -12,7 +12,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
   const setAdded = useAmountStore((state) => state.setAdded);
   const local = "http://127.0.0.1:8000/";
   const router = useRouter();
-  const token = localStorage.getItem('key')
+  const token = localStorage.getItem("key");
   const handleAddCart = async () => {
     if (amount > 0) {
       const response = await axios.post(
@@ -24,7 +24,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
       console.log(response);
 
       setText("added to cart");
-      setTimeout(() => window.location.reload(), 200)
+      setTimeout(() => window.location.reload(), 200);
     } else {
       setText("please enter amount");
     }
@@ -39,7 +39,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
   return (
     <div>
       <div className="hidden sm:flex">
-        <div className="card w-80 bg-slate-500 shadow-xl mx-2">
+        <div className="card w-80 bg-gradient-to-r from-slate-500 to-gray-700 shadow-xl mx-2">
           <figure>
             <Image
               src={local + item.pic}
@@ -50,27 +50,32 @@ export const ProductCard = ({ item }: { item: Product }) => {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">
+            <h2 className="card-title text-slate-200 font-sans  text-xl">
               {item.name}
-              <div className="badge badge-secondary">{item.category}</div>
+              <div className="badge badge-secondary bg-slate-300 border-none font-sans h-7">
+                <div className="my-3">{item.category}</div>
+              </div>
             </h2>
-            <p>{item.description}</p>
+            <p className="text-slate-200">{item.description}</p>
           </div>
-          <div className="flex justify-center">
+          <div className="flex  justify-center space-x-2">
             <button
-              className="btn  bg-green-600 border-none text-slate-100 mb-2 w-24 mx-auto"
+              className="btn  bg-black border-none text-slate-100 mb-2 w-22 "
               onClick={() => handleAddCart()}
             >
               {text}
             </button>
-            
+
             <input
               type="text"
               placeholder="count"
-              className="input input-bordered w-20 input-ghost mr-10 text-start text-sm text-slate-100"
+              className="input input-bordered w-20 input-ghost text-start text-sm text-slate-100 border-3 border-slate-700"
               onChange={() => handleAmount(event)}
             />
-            <button onClick={() => router.push(`/products/${item.id}/`)} className="btn btn-primary mr-3">
+            <button
+              onClick={() => router.push(`/products/${item.id}/`)}
+              className="btn bg-slate-900 text-slate-100 mr-3 w-22"
+            >
               look
             </button>
           </div>
@@ -78,8 +83,8 @@ export const ProductCard = ({ item }: { item: Product }) => {
       </div>
 
       {/* for smaller displays */}
-      <div className="sm:hidden">
-        <div className="card w-80 bg-slate-500 shadow-xl mx-2 mt-4 mb-4">
+      <div className="flex sm:hidden mt-2 mb-2">
+        <div className="card w-80 bg-gradient-to-r from-slate-500 to-gray-700 shadow-xl mx-2">
           <figure>
             <Image
               src={local + item.pic}
@@ -90,64 +95,35 @@ export const ProductCard = ({ item }: { item: Product }) => {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">
+            <h2 className="card-title text-slate-200 font-sans  text-xl">
               {item.name}
-              <div className="badge badge-secondary">{item.category}</div>
+              <div className="badge badge-secondary bg-slate-300 border-none font-sans h-7">
+                <div className="my-3">{item.category}</div>
+              </div>
             </h2>
-            <p>{item.description}</p>
+            <p className="text-slate-200">{item.description}</p>
           </div>
-          {token ? <button
-            className="btn bg-green-600 mb-2 w-24 mx-auto"
-            onClick={() => handleAddCart()
-            
-            }
-          >
-            Add to cart
-            <ShoppingCart />
-          </button> : "" }
-          
-          {/* <div className="mx-10">
+          <div className="flex  justify-center space-x-2">
+            <button
+              className="btn  bg-black border-none text-slate-100 mb-2 w-22 "
+              onClick={() => handleAddCart()}
+            >
+              {text}
+            </button>
+
             <input
-              type="range"
-              min={0}
-              max="100"
-              // value="25"
-              className="range"
-              step="10"
+              type="text"
+              placeholder="count"
+              className="input input-bordered w-20 input-ghost text-start text-sm text-slate-100 border-3 border-slate-700"
+              onChange={() => handleAmount(event)}
             />
-            <div className="w-full flex justify-between text-xs mb-2 p-2">
-              <span className="text-lg" onClick={() => setAmount(1)}>
-                1
-              </span>
-              <span className="text-lg" onClick={() => setAmount(2)}>
-                2
-              </span>
-              <span className="text-lg" onClick={() => setAmount(3)}>
-                3
-              </span>
-              <span className="text-lg" onClick={() => setAmount(4)}>
-                4
-              </span>
-              <span className="text-lg" onClick={() => setAmount(5)}>
-                5
-              </span>
-              <span className="text-lg" onClick={() => setAmount(6)}>
-                6
-              </span>
-              <span className="text-lg" onClick={() => setAmount(7)}>
-                7
-              </span>
-              <span className="text-lg" onClick={() => setAmount(8)}>
-                8
-              </span>
-              <span className="text-lg" onClick={() => setAmount(9)}>
-                9
-              </span>
-              <span className="text-lg" onClick={() => setAmount(10)}>
-                10
-              </span>
-            </div>
-          </div> */}
+            <button
+              onClick={() => router.push(`/products/${item.id}/`)}
+              className="btn bg-slate-900 text-slate-100 mr-3 w-22"
+            >
+              look
+            </button>
+          </div>
         </div>
       </div>
     </div>
