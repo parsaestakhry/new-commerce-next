@@ -39,7 +39,11 @@ export const ShoppingCart = () => {
   return (
     <div>
       <div className="dropdown dropdown-end">
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle w-28  bg-black">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle w-22  bg-black"
+        >
           <div className="indicator">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -60,14 +64,14 @@ export const ShoppingCart = () => {
         </div>
         <div
           tabIndex={0}
-          className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
+          className="mt-5 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md"
         >
           <div className="card-body">
-            <span className="font-bold text-lg">{cartCount} Items</span>
-            <span className="text-info">Subtotal: ${purchaseAmount}</span>
+            <span className="font-bold text-lg text-slate-100">{cartCount} Items</span>
+            <span className="text-sky-300">Subtotal: ${purchaseAmount}</span>
             <div className="card-actions">
               <button
-                className="btn btn-primary btn-block"
+                className="btn  bg-black btn-block"
                 onClick={() => router.push("/login/user/")}
               >
                 View cart
