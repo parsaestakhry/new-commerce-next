@@ -12,6 +12,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
   const setAdded = useAmountStore((state) => state.setAdded);
   const local = "http://127.0.0.1:8000/";
   const router = useRouter();
+  const token = localStorage.getItem('key')
   const handleAddCart = async () => {
     if (amount > 0) {
       const response = await axios.post(
@@ -62,6 +63,7 @@ export const ProductCard = ({ item }: { item: Product }) => {
             >
               {text}
             </button>
+            
             <input
               type="text"
               placeholder="count"
@@ -94,13 +96,16 @@ export const ProductCard = ({ item }: { item: Product }) => {
             </h2>
             <p>{item.description}</p>
           </div>
-          <button
+          {token ? <button
             className="btn bg-green-600 mb-2 w-24 mx-auto"
-            onClick={() => handleAddCart()}
+            onClick={() => handleAddCart()
+            
+            }
           >
             Add to cart
             <ShoppingCart />
-          </button>
+          </button> : "" }
+          
           {/* <div className="mx-10">
             <input
               type="range"
