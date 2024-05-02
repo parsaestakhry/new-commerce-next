@@ -30,13 +30,13 @@ export const NavBar = () => {
   //console.log(categories);
   return (
     <div>
-      <div className="navbar  bg-slate-700">
+      <div className="navbar bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
         <div className="flex-1">
           <a
             className="btn btn-ghost text-xl sm:flex hidden"
             onClick={() => router.push("/")}
           >
-            <Storefront weight="bold" size={25} />
+            <Storefront weight="bold" size={32} color="#d6d6d6" />
           </a>
           <div className="hidden sm:flex">
             <CategoryDropDown categories={categories} />

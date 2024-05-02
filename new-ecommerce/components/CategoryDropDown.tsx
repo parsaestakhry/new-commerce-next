@@ -15,9 +15,9 @@ export const CategoryDropDown = (props: any) => {
       <details className="dropdown">
         <summary className="m-1 btn btn-ghost" onClick={() => setUp(!up)}>
           {up ? (
-            <CaretUp size={20} weight="bold" />
+            <CaretUp size={22} weight="bold" color="#d6d6d6" />
           ) : (
-            <CaretDown size={20} weight="bold" />
+            <CaretDown size={22} weight="bold" color="#d6d6d6" />
           )}
         </summary>
         <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-800 rounded-box w-52">

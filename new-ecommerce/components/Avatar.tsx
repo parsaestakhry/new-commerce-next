@@ -7,15 +7,15 @@ export const Avatar = () => {
   return (
     <div>
       <div className="dropdown dropdown-end">
-        <div tabIndex={0} role="button" className="btn m-1 bg-purple-400 text-gray-950 ml-3 hover:bg-purple-500 border-none">
+        <div tabIndex={0} role="button" className="btn m-1 bg-resolution-blue-50 btn-circle  w-36 bg-black text-slate-100  ml-3">
           welcome {username}
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu p-2 shadow bg-resolution-blue-300 rounded-box w-52"
         >
           <li>
-            <a>Logout</a>
+            <a className=" text-black-950">Logout</a>
           </li>
           
         </ul>
