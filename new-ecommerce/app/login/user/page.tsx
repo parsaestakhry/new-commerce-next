@@ -42,6 +42,7 @@ const page = () => {
           <div className="mt-4 mb-4">
             <UserProductCard item={item} key={index} />
           </div>
+          
         ))}
       </div>
     </>
